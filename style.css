@@ -1,0 +1,15 @@
+#score {
+  display: inline-block;
+}
+
+div {
+  font-family: monospace;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+}
