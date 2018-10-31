@@ -13,3 +13,17 @@ canvas {
   display: block;
   margin: 0 auto;
 }
+
+.outerDiv {
+  display: flex;
+  justify-content: space-around;
+  border: 2px solid black;
+  margin: 200px auto;
+  padding: 20px;
+  width: 60%;
+}
+
+.logo {
+  height: 100px;
+  margin-bottom: 50px;
+}

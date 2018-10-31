@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://learn.ironhack.com/#/learning_unit/6397 -->
+<html ng-app="IHplatform" lang="es" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+  <link rel="shortcut icon" href="https://www.ironhack.com/assets/favicon.ico">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Ironhack Student Platform</title>
+
+  <link rel="stylesheet" media="all" href="./Ironhack Student Platform_files/application-81753da758df6cfa12d7a489c0ccdd10.css">
+  <script src="./Ironhack Student Platform_files/application-760e7679fbe5a3dccce98a565a336f11.js"></script>
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="R/HuFXo8iSg8moH5OBabBErHTSnburArtQJhUPgROjepCLtIjR3TxxFmwdgWjR76eq8pUZgeDcBEM0tmJHyRAw==">
+  <link rel="stylesheet" href="./Ironhack Student Platform_files/font-awesome.min.css">
+
+  <!-- IE8 support for HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body id="body">
+  <nav class="navbar navbar-default" role="navigation">
+  <div class="nav-container container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://learn.ironhack.com/#/"><img src="./Ironhack Student Platform_files/logo.png" class="logo"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav margin_left">
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="http://learn.ironhack.com/#/profile" class="login_area inline valign-m inline ng-binding">
+            Caroline
+            <img class="inline avatartop" ng-src="//ih-platform.s3.amazonaws.com/images/users/avatars/thumb/3606.jpeg?1535762413" src="./Ironhack Student Platform_files/3606.jpeg">
+          </a>
+        </li>
+        <li>
+          <a href="http://learn.ironhack.com/users/sign_out" ng-click="shared.logout()" rel="nofollow" data-method="delete" class="logout-button"><i class="fa fa-power-off" aria-hidden="true"></i></a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div ng-controller="alertsController" class="ng-scope">
+  <!-- ngIf: alerts.length -->
+</div>
+
+<div class="breadcrumbs-container">
+  <!-- ngIf: shared.course && path() !== '/profile' --><div ng-if="shared.course &amp;&amp; path() !== &#39;/profile&#39;" class="breadcrumbs ng-scope">
+    <span class="font bold"><a href="http://learn.ironhack.com/#/">HOME</a></span>
+    <span class="font bold">» <a href="http://learn.ironhack.com/#/course" class="ng-binding">Web Dev 4.7.1</a></span>
+    <!-- ngIf: shared.learningUnit.title --><span ng-if="shared.learningUnit.title" class="ng-binding ng-scope"> » CSS | Flexbox</span><!-- end ngIf: shared.learningUnit.title -->
+  </div><!-- end ngIf: shared.course && path() !== '/profile' -->
+
+  <!-- ngIf: path() === '/profile' -->
+</div>
+
+
+<div id="general-container" class="container-fluid">
+  <!-- <ng-include src="'aside.html'"></ng-include> -->
+  <!-- ngView: --><ng-view class="ng-scope">
+  <section class="col-md-12 course_navigation ng-scope">
+    <!-- ngInclude: --><ng-include src="&#39;content.html&#39;" class="ng-scope">
+  <!-- ngRepeat: resource in data.resources --><div ng-repeat="resource in data.resources" class="ng-scope">
+    <article id="lesson-content" class="content font color dark_grey ng-binding" target-blank="" highlight="" ng-hide="showCode" ng-bind-html="resource.content | markdownWithHtml" ng-class="{ &#39;md-padding&#39;: isMarkdown(resource.content) }"><iframe src="./Ironhack Student Platform_files/S1zeC3zpVVQ.html"></iframe></article>
+  </div><!-- end ngRepeat: resource in data.resources -->
+</ng-include>
+  </section>
+</ng-view>
+</div>
+
+<script type="text/ng-template" id="aside.html">
+  <aside ng-controller="asideController" class="col-md-3 padding-left0 radius course">
+    <div ng-if="shared.user" class="profile_box bg_dark_grey">
+      <h3 class="text-center">Class Materials</h3>
+    </div>
+    <div ng-controller="courseController">
+      <div class="courselist">
+        <ul accordion class="listnone">
+          <li accordion-group class="no-pad" ng-repeat="module in data.modules">
+            <accordion-heading>
+              <span ng-bind-html="module.title | prettyTitle"></span>
+            </accordion-heading>
+            <ul class="opened_course small listnone bg_light_grey">
+              <li ng-class="{ selected: isActive('/learning_unit/{{learningUnit.id}}') , bg_white: learningUnit.block=='separator'}" ng-repeat="learningUnit in module.learning_units">
+                <a ng-click="goToTop()" ng-href="#/learning_unit/{{learningUnit.id}}">{{learningUnit.title}}</a>
+                <span class="pull-right glyphicon glyphicon-check green-check" ng-show="isActive('/learning_unit/{{learningUnit.id}}')"></span>
+              </li>
+            </ul>
+          </li accordion-group>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</script>
+
+<script type="text/ng-template" id="course.html">
+  <aside ng-controller="asideController" class="col-md-12 radius course course-index">
+    <div ng-controller="courseController">
+      <div class="container course-contents-container">
+        <ul id="course-tabs" class="nav nav-tabs" role="tablist">
+          <li role="presentation">
+            <a aria-controls="participants" ng-click="tab = -1" role="tab" data-toggle="tab" class="participants-tab">
+              <i class="fa fa-users" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <li ng-repeat="module in data.modules track by $index" role="presentation" ng-class="{ 'active': $index==tab }">
+            <a aria-controls="week{{ $index }}" ng-click="tabClick($index); $parent.tab = $index" role="tab" data-toggle="tab">
+              {{ module.title }}
+            </a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div ng-controller="participantsController" role="tabpanel" id="participants" class="tab-pane fade in"
+            ng-show="tab === -1"
+            ng-class="{ 'active': -1 == tab }">
+            <table id="table-of-contents" class="table table-hover table-condensed">
+              <tr class="separator">
+                <th class="separator">My Classroom</th>
+              </tr>
+              <tr ng-repeat="user in data.participants" class="learning-unit-row">
+                <td class="participants-row">
+                  <img ng-src="{{user.avatar_thumb}}" class="avatar image-circle">
+                  <div class="participant-information">
+                    <span class="participant-name">{{ user.name }}</span>
+
+                    <ul class="listnone list-inline">
+                      <li ng-if="user.twitter">
+                        <a ng-href="https://twitter.com/{{user.twitter}}" target="_blank">
+                          <i class="icon-twitter small font color circleicon semi_grey"></i>
+                        </a>
+                      </li>
+                      <li ng-if="user.facebook">
+                        <a ng-href="http://facebook.com/{{user.facebook}}" target="_blank">
+                          <i class="icon-facebook small font color circleicon semi_grey"></i>
+                        </a>
+                      </li>
+                      <li ng-if="user.github">
+                        <a ng-href="https://github.com/{{user.github}}" target="_blank">
+                          <i class="icon-github-alt small font color circleicon semi_grey"></i>
+                        </a>
+                      </li>
+                      <li ng-if="user.linkedin">
+                        <a ng-href="http://linkedin.com/{{user.linkedin}}" target="_blank">
+                          <i class="icon-linkedin small font color circleicon semi_grey"></i>
+                        </a>
+                      </li>
+                      <li ng-if="user.blog">
+                        <a ng-href="//{{user.blog}}" target="_blank">
+                          <i class="icon-pencil small font color circleicon semi_grey"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div role="tabpanel" id="week{{ $index }}" class="tab-pane fade in"
+              ng-repeat="module in data.modules track by $index"
+              ng-show="tab === {{ $index }}"
+              ng-class="{ 'active': {{ $index }} == tab }">
+            <table id="table-of-contents" class="table table-hover table-condensed">
+              <tr ng-repeat="learningUnit in module.learning_units"
+                  ng-class="{'learning-unit-row': learningUnit.block != 'separator'}">
+                <th ng-if="learningUnit.block == 'separator'">
+                  {{ learningUnit.title }}
+                </th>
+                <td ng-if="learningUnit.block !== 'separator' && !learningUnit.lab_url">
+                  <i class="material-icon fa fa-television" aria-hidden="true"></i>
+                  <a ng-href="#/learning_unit/{{ learningUnit.id }}">{{ learningUnit.title }}</a>
+                </td>
+                <td ng-if="learningUnit.block !== 'separator' && learningUnit.lab_url">
+                  <i ng-class="{'fa-github-square': learningUnit.lab_url.indexOf('typeform') < 0, 'fa-drivers-license': learningUnit.lab_url.indexOf('typeform') >= 0}"
+                     class="material-icon fa" aria-hidden="true"></i>
+                  <a ng-href="{{ learningUnit.lab_url }}" target="_blank">{{ learningUnit.title }}</a>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</script>
+
+<script type="text/ng-template" id="profile.html">
+  <section class="content center padding_top padding_bottom">
+    <h1 class="font book insane bold center padding_bottom margin0 padding0 color dark_grey">Edit my profile
+      <h3 class="font color grey margin_bottom">Fill out your profile information</h3>
+    </h1>
+
+    <div class="edit_profile col-md-6 col-centered  striped_bordered">
+      <form novalidate>
+        <h3 class="font color semi_padding_left semi_padding_top grey text-left">Personal Info</h3>
+        <div class="form-group padding text-left">
+          <label for="inputName">Your Name</label>
+          <input ng-model="user.name" type="text" class="form-control" id="inputName" placeholder="Enter name">
+          </br>
+          <label for="inputSurname">Your Surname</label>
+          <input ng-model="user.surname" type="text" class="form-control" id="inputSurname" placeholder="Enter Surname">
+          </br>
+          <label for="inputEmail">Your Email</label>
+          <input ng-model="user.email" type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+        </div>
+
+        <div class="change_avatar">
+          <img ngf-src="file || shared.user.avatar_thumb || '/images/missing/users/avatars/thumb.png'" class="avatarbig">
+
+          <h3> Change your avatar </h3>
+          <div class="btn btn-default btn-file bg_blue big color bold" ngf-select
+            ng-model="file"
+            name="file"
+            ngf-pattern="'image/*'"
+            ngf-accept="'image/*'"
+            ngf-max-size="20MB"
+            ngf-min-height="100"
+            ngf-resize="{width: 100, height: 100}">Select file
+          </div>
+        </div>
+
+        <h3 class="font color grey semi_padding_left light_grey text-left">Your channels</h3>
+        <div class="form-group padding text-left">
+          <label for="inputBlog"><i class="icon-pencil"></i> Blog</label>
+          <input ng-model="user.blog" type="text" class="form-control" id="inputBlog" placeholder="Enter your Blog">
+          </br>
+          <label for="inputTwitter"><i class="icon-twitter"></i> Twitter</label>
+          <input ng-model="user.twitter" type="text" class="form-control" id="inputTwitter" placeholder="Enter your twitter">
+          </br>
+          <label for="inputGithub"><i class="icon-github-alt"></i> Github</label>
+          <input ng-model="user.github" type="text" class="form-control" id="inputGithub" placeholder="Enter your Github">
+          </br>
+          <label for="inputLinkedin"><i class="icon-linkedin"></i> Linkedin</label>
+          <input ng-model="user.linkedin" type="text" class="form-control" id="inputLinkedin" placeholder="Enter your Linkedin">
+        </div>
+
+        <h3 class="font color grey semi_padding_left light_grey text-left">Change your password</h3>
+        <div class="form-group padding text-left">
+          <label><i></i> New password</label>
+          <input ng-model="user.password" type="password" class="form-control" id="exampleInputEmail1" placeholder="Enter new password">
+          </br>
+          <label><i></i> Password confirmation</label>
+          <input ng-model="user.password_confirmation" type="password" class="form-control" id="exampleInputEmail1" placeholder="Enter password confirmation">
+        </div>
+
+        </br>
+        <button ng-click="update(user, file)" class="button margin_bottom blue white font color bold big width100">Update</button>
+      </form>
+    </div>
+  </section>
+</script>
+
+<script type="text/ng-template" id="content.html">
+  <div ng-repeat="resource in data.resources">
+    <article id="lesson-content" class="content font color dark_grey" target-blank highlight
+      ng-hide="showCode"
+      ng-bind-html="resource.content | markdownWithHtml"
+      ng-class="{ 'md-padding': isMarkdown(resource.content) }">
+    </article>
+  </div>
+</script>
+
+<script type="text/ng-template" id="learning_unit.html">
+  <section class="col-md-12 course_navigation">
+    <ng-include src="'content.html'"></ng-include>
+  </section>
+</script>
+
+<script type="text/ng-template" id="participants.html">
+  <section class="col-md-9 course_navigation padding_left">
+    <article class="content">
+      <h1 class="semi_margin_bottom">Participants</h1>
+      <article class="margin_bottom margin_top">
+        <div class="row listnone">
+          <div class="col-md-4" ng-repeat="user in data.participants">
+            <div class="panel panel-default">
+              <div class="panel-body participant border-top">
+                <img ng-src="{{user.avatar_thumb}}" class="col-md-5">
+                <span class="col-md-7 semi_padding_top font color bold bi">{{user.name}}</span>
+              </div>
+              <div class="panel-footer bg_light_grey padding0">
+                <div class="bg_light_grey quarter_padding_top quarter_padding_bottom">
+                  <ul class="margin0 listnone center social list-inline">
+                    <li ng-if="user.twitter">
+                      <a ng-href="https://twitter.com/{{user.twitter}}" target="_blank">
+                        <i class="icon-twitter big font color circleicon semi_grey"></i>
+                      </a>
+                    </li>
+                    <li ng-if="user.facebook">
+                      <a ng-href="http://facebook.com/{{user.facebook}}" target="_blank">
+                        <i class="icon-facebook big font color circleicon semi_grey"></i>
+                      </a>
+                    </li>
+                    <li ng-if="user.github">
+                      <a ng-href="https://github.com/{{user.github}}" target="_blank">
+                        <i class="icon-github-alt big font color circleicon semi_grey"></i>
+                      </a>
+                    </li>
+                    <li ng-if="user.linkedin">
+                      <a ng-href="http://linkedin.com/{{user.linkedin}}" target="_blank">
+                        <i class="icon-linkedin big font color circleicon semi_grey"></i>
+                      </a>
+                    </li>
+                    <li ng-if="user.blog">
+                      <a ng-href="//{{user.blog}}" target="_blank">
+                        <i class="icon-pencil big font color circleicon semi_grey"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </article>
+  </section>
+</script>
+
+<script type="text/ng-template" id="course_select.html">
+  <section class="content center padding_top padding_bottom">
+    <div class="row center">
+      <article class="col-md-12 text-center">
+        <h2 id="welcome">Welcome to Ironhack</h2>
+      </article>
+    </div>
+
+    <div class="row center">
+      <article class="col-md-6 col-md-offset-3 floatnone valign-t" ng-repeat="edition in data.course_editions">
+        <a ng-click="selectEdition(edition)" ng-href="#/course">
+          <div class="panel panel-default">
+            <div class="panel-body codepanel">
+              <h1 class="font huge bold color white">{{edition.type | capitalize}}
+                <span class="font big book block color white">Ironhack {{edition.city | capitalize}}</span>
+              </h1>
+              <span class="font small regular block color italic light_blue start-date-container">
+                <span ng-show="edition.start_at">{{ edition.start_at | date:"MMMM yyyy" }}</span>
+              </span>
+            </div>
+          </div>
+        </a>
+      </article>
+    </div>
+  </section>
+</script>
+
+
+
+
+</body></html>
