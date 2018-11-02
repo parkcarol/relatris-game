@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Tetris Game</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
+  <!-- <div class="bodyDiv"> -->
     <div class="outerDiv">
       <div>
-        <img src="1412176993_tetris-logo.jpg" class="logo">
-        <div>
-          Score : <div id="score">0</div>
+        <h1 class="display-3">Tetris</h1>
+        <div class="commands">
+          <div id="score">Score : 0</div>
+          <button type="button" id="start" class="btn btn-success">Start</button>
         </div>
       </div>
       <div>
       <canvas id="tetris" width="200" height="400"></canvas>
       </div>
     </div>
-  <script src="pieces.js"></script>
-  <script src="script.js"></script>
+    <script src="pieces.js"></script>
+    <script src="script.js"></script>
+  <!-- </div> -->
 </body>
 </html>
