@@ -5,7 +5,7 @@ A HTML5 canvas and Javacript Tetris Game.
 This Tetris clone is based on [Tetris-JavaScript source](https://github.com/CodeExplainedRepo/Tetris-JavaScript).
 
 # Installation Instructions
-You may download a zip file directly to your computer and open the index.html file on your browser or you may [click here]().
+You may download a zip file directly to your computer and open the index.html file on your browser or you may [click here](https://parkcarol.github.io/tetris-game/).
 
 # Concept
 Tetris is a game I like to play alone when I need to take a step back and recenter my mind.
